@@ -1,0 +1,68 @@
+.search-img {
+  background: url('../img/loupe.png') no-repeat 50%;
+}
+
+.like, .dislike {
+  background-image: url('../img/like.png');
+  background-size: 80px;
+  background-position: 50%;
+}
+
+.dislike {
+  background-image: url('../img/dislike.png');
+}
+
+.scale{
+  cursor: zoom-out;
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+
+.smileys {
+  background-image: url('../emoji/smileys.png');
+}
+
+.laughing {
+  background-image: url('../emoji/laughing.png');
+}
+
+.love {
+  background-image: url('../emoji/love.png');
+}
+
+.shocked {
+  background-image: url('../emoji/shocked.png');
+}
+
+.cute {
+  background-image: url('../emoji/cute.png');
+}
+
+.sad {
+  background-image: url('../emoji/sad.png');
+}
+
+.angry {
+  background-image: url('../emoji/angry.png');
+}
+
+.pagination {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.pagination li {
+  background-color: #499de9;
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.pagination li * {
+  color: #fff;
+  padding: 10px;
+  display: inline-block;
+}
+
+.pagination .active {
+  background-color: #035daf;
+}
