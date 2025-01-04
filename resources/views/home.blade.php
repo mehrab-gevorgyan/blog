@@ -512,25 +512,19 @@
         <div class="mt-[50px]">
             <h2 class="font-medium text-[20px] mb-[20px]">Popular Posts</h2>
             <ul>
-                @foreach ($likes as $post_id => $post_likes)
+                @foreach ($likes as $post_id => $likes_title)
                     <li class="flex">
                         <div class="w-[170px]">
-                            <span class="font-medium">{{ $loop->index + 1 }}. </span>
+                            <span class="font-medium">{{ $loop->index + 1 }}.</span>
                             <a href="{{ url("/posts?page=".intdiv($post_id, 10) + 1)."&scroll=$post_id" }}" class="font-medium underline mb-[10px]">
-                                @php
-                                    $p = App\Models\Post::find($post_id)->title;
-                                    if(mb_strlen($p) > 15) {
-                                        $p = htmlentities(substr($p, 0, 15));
-                                        echo $p.' ...';
-                                    }
-                                @endphp
+                                {{ $likes_title[1] }}
                             </a>
                         </div>
-                        <span class="italic"> - {{ $post_likes }} like</span>
+                        <span class="italic"> - {{ $likes_title[0] }} like</span>
                     </li>
                 @endforeach
 
-                {{-- scroll --}}
+                {{-- scroll in js --}}
                 <script>
                     $.urlParam = function(name){
                         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -557,7 +551,7 @@
                     <li class="flex gap-2">
                         <div class="w-[160px]">
                             <span class="font-medium">{{ $loop->index + 1 }}. </span>
-                            <a href="{{ url("/tag/".$tags_id[$loop->index])}}" class="font-medium underline text-blue-500">
+                            <a href="{{ url("/tag/".$tags_id[$loop->index]) }}" class="font-medium underline text-blue-500">
                                 {{ $k }}
                                 @php
                                     if(mb_strlen($k) > 15) {

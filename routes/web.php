@@ -9,17 +9,17 @@ Route::redirect('/', '/posts');
 // resource controller
 Route::resource('posts', PostController::class);
 
-// get all posts from user, tag
+// get all posts by user, tag
 Route::get('user/{id}', [PostController::class, 'userAllPosts']);
 Route::get('tag/{id}', [PostController::class, 'tagAllPosts']);
 
 Route::middleware(['guest'])->group(function() {
     // registration
-    Route::get('/registration', [UserController::class, 'create'])->middleware('guest')->name('reg.create');
-    Route::post('/registration', [UserController::class, 'store'])->middleware('guest')->name('reg.store');
+    Route::get('/registration', [UserController::class, 'create'])->name('reg.create');
+    Route::post('/registration', [UserController::class, 'store'])->name('reg.store');
 
     // login
-    Route::get('/login', [UserController::class, 'login'])->middleware('guest')->name('login');
+    Route::get('/login', [UserController::class, 'login'])->name('login');
 });
 
 Route::middleware(['auth'])->group(function() {

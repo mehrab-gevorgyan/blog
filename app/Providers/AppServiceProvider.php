@@ -8,11 +8,10 @@ use App\Models\Post;
 use App\Models\Post_Tag;
 use App\Models\Tag;
 use App\Models\User;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Gate as MyGate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        MyGate::define('delete-update-post', function(User $user, Post $post){
+        Gate::define('delete-update-post', function(User $user, Post $post){
             return $user->id === $post->user_id || $user->email === 'mehrabgevorgyan@gmail.com';
         });
 
@@ -45,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
         // foreach ($post as $key => $value) {
         //     $post[] = array_values($post)[$key]->count();
         // }
-        
+
         // every tag all posts count
         $tag_all_posts = array_count_values(Post_Tag::pluck('tag_id')->all());
         asort($tag_all_posts);
@@ -81,6 +80,15 @@ class AppServiceProvider extends ServiceProvider
         arsort($likes);
         //dd(intdiv(10, 10));
         $likes = array_slice($likes, 0, 10, true);
+
+        // add post short title
+        foreach($likes as $post_id => $likes_count) {
+            $likes[$post_id] = [$likes_count, Post::find($post_id)->title];
+
+            if(mb_strlen($likes[$post_id][1]) > 15) {
+                $likes[$post_id][1] = substr($likes[$post_id][1], 0, 15).' ...';
+            }
+        }
         //dd($likes);
 
         View::share('likes', $likes);
