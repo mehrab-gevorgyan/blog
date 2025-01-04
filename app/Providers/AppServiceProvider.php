@@ -78,13 +78,15 @@ class AppServiceProvider extends ServiceProvider
             $likes[$post_id] = $rating;
         }
         arsort($likes);
-        //dd(intdiv(10, 10));
+        //dd(intdiv(31, 10));
         $likes = array_slice($likes, 0, 10, true);
 
         // add post short title
         foreach($likes as $post_id => $likes_count) {
-            $likes[$post_id] = [$likes_count, Post::find($post_id)->title];
+            // add title, pagination page to assoc arr
+            $likes[$post_id] = [$likes_count, Post::find($post_id)->title, intdiv(Post::where('id', '<', $post_id)->count(), 10) + 1];
 
+            // add short title
             if(mb_strlen($likes[$post_id][1]) > 15) {
                 $likes[$post_id][1] = substr($likes[$post_id][1], 0, 15).' ...';
             }

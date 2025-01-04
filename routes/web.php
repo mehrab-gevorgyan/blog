@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::redirect('/', '/posts');
 
@@ -15,16 +16,16 @@ Route::get('tag/{id}', [PostController::class, 'tagAllPosts']);
 
 Route::middleware(['guest'])->group(function() {
     // registration
-    Route::get('/registration', [UserController::class, 'create'])->name('reg.create');
-    Route::post('/registration', [UserController::class, 'store'])->name('reg.store');
+    Route::get('/registration', [RegisterController::class, 'create'])->name('reg.create');
+    Route::post('/registration', [RegisterController::class, 'store'])->name('reg.store');
 
     // login
-    Route::get('/login', [UserController::class, 'login'])->name('login');
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
 });
 
 Route::middleware(['auth'])->group(function() {
     // logout
-    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     // add like, dislike
     Route::post('/posts/{id}/like', [PostController::class, 'postLike'])->name('like');

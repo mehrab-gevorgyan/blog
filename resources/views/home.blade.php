@@ -512,15 +512,15 @@
         <div class="mt-[50px]">
             <h2 class="font-medium text-[20px] mb-[20px]">Popular Posts</h2>
             <ul>
-                @foreach ($likes as $post_id => $likes_title)
+                @foreach ($likes as $post_id => $likes_title_page)
                     <li class="flex">
                         <div class="w-[170px]">
                             <span class="font-medium">{{ $loop->index + 1 }}.</span>
-                            <a href="{{ url("/posts?page=".intdiv($post_id, 10) + 1)."&scroll=$post_id" }}" class="font-medium underline mb-[10px]">
-                                {{ $likes_title[1] }}
+                            <a href="{{ url("/posts?page=$likes_title_page[2]&scroll=$post_id") }}" class="font-medium underline mb-[10px]">
+                                {{ $likes_title_page[1] }}
                             </a>
                         </div>
-                        <span class="italic"> - {{ $likes_title[0] }} like</span>
+                        <span class="italic"> - {{ $likes_title_page[0] }} like</span>
                     </li>
                 @endforeach
 
