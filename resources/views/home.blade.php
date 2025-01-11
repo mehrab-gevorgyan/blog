@@ -137,7 +137,7 @@
                     {{-- emojies ajax COMMENTS VIEWS count--}}
                     <div class="flex justify-between items-center relative h-[60px]">
 
-                        {{-- comments views count --}}
+                        {{-- comments, views count --}}
                         <div class="flex gap-2">
                             {{-- comments count --}}
                             <div class="px-[10px] py-[5px] rounded-md flex bg-gray-100 hover:cursor-pointer comments-info{{ $post->id }}">
@@ -166,13 +166,13 @@
                         {{-- emojies --}}
                         <div class="flex items-center absolute right-0 mb-[0px] emojies{{ $post->id }}">
                             {{-- emojies click --}}
-                            <span class="flex items-center cursor-pointer bg-white rounded-md px-[10px] py-[5px] bg-[#f3f6f4] emojies-click{{ $post->id }}">
+                            <span class="flex items-center cursor-pointer rounded-md px-[10px] py-[5px]  bg-gray-100 emojies-click{{ $post->id }}">
                                 <span class="mr-4">emojies</span>
                                 <img src="{{ asset('emoji/thinking.png') }}">
                             </span>
 
                             {{-- ajax add emoji in db --}}
-                            <div class="w-[250px] p-[10px] p-[10px] z-[9999] bg-white rounded-md absolute -top-[45px] -left-[135px] hidden justify-between emojies-group{{ $post->id }} shadow-md">
+                            <div class="w-[250px] p-[10px] z-[9999] bg-gray-100 rounded-md absolute -top-[45px] -left-[135px] hidden justify-between emojies-group{{ $post->id }} shadow-md">
                                 <div class="flex gap-2 z-[9999]">
                                     <form class="w-[25px] rounded-none smileys{{ $post->id }} flex flex-col" method="POST" action="{{ route('emoji', $post->id) }}">
                                         @csrf

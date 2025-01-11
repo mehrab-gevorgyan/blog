@@ -38,7 +38,7 @@
                     <form action="{{ route('posts.index') }}" class="h-[40px]">
                         @csrf
                         <input name="search" class="shadow outline-none w-[250px] focus:shadow-md mr-[20px] px-[15px] py-[10px]" type="text" placeholder="Search..." value="{{ request('search') }}">
-                        <input type="submit" class="w-[32px] border-none cursor-pointer h-[40px] search-img" value="">
+                        <input type="submit" class="w-[32px] border-none cursor-pointer h-[40px] bg-no-repeat" style="background: url('img/loupe.png') no-repeat 50%" value="">
                     </form>
                 </li>
 

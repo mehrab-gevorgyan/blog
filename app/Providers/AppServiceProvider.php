@@ -92,7 +92,6 @@ class AppServiceProvider extends ServiceProvider
             }
         }
         //dd($likes);
-
         View::share('likes', $likes);
 
     }
